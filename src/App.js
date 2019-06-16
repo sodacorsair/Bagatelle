@@ -1,28 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import '@/App.less';
+import { connect } from 'react-redux';
 import { Button } from 'antd';
+import { addCount } from '@/redux/demo/actionCreators';
+import { actionCreators } from './redux/demo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      <Button type='primary'>antd button</Button>
-        { /*<img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a> */}
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+        <Button type='primary'>antd button</Button>
+          {this.props.count}
+        <Button type='primary'onClick={this.props.addCount}>
+          Click
+        </Button>
+        </header>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  count: state.demo.count,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  addCount() {
+    dispatch(actionCreators.addCount());
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
