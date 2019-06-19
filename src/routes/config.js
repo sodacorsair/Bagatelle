@@ -8,6 +8,7 @@ const childRoutes = [
 ]
 
 const routes = [
+    // spread operator expand the result of filter into an array
     ...childRoutes.filter(r => r.component || (r.childRoutes && r.childRoutes.length > 0)),
     {
         path: '*',
@@ -16,6 +17,7 @@ const routes = [
     }
 ]
 
+// recursively find the index route node and handle that
 const handleIndexRoute = (route) => {
     if (!route.childRoutes || !route.childRoutes.length) {
         return;

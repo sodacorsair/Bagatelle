@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
-import routes from '@/routes/config'
+import routes from '@/routes/config';
 
 const renderRoutes = (routes, contextPath) => {
   const children = []
@@ -13,14 +13,13 @@ const renderRoutes = (routes, contextPath) => {
       newContextPath = `${routeContextPath}/${item.path}`
     }
     newContextPath = newContextPath.replace(/\/+/g, '/');
-    console.log(routes, newContextPath);
 
     if (item.component && item.childRoutes) {
-      const childRoutes = renderRoute(item.childRoutes, newContextPath);
+      const childRoutes = renderRoutes(item.childRoutes, newContextPath);
       children.push(
         <Route
           key={newContextPath}
-          render={ porps => <item.component {...props}>{childRoutes}</item.component>}
+          render={ props => <item.component {...props}>{childRoutes}</item.component>}
           path={newContextPath}
         />
       )
