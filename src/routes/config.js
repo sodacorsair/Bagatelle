@@ -1,20 +1,18 @@
+import homeRoutes from '@/views/web/routes';
 import exampleRoute from '@/examples/routes';
-import PageNotFound from '@/components/NotFound';
-import homeRoutes from '@/views/routes';
+import adminRoutes from '@/views/admin/routes';
+import rootRoutes from './rootRoutes';
 
 const childRoutes = [
+    exampleRoute,
+    adminRoutes,
+    rootRoutes,
     homeRoutes,
-    exampleRoute
 ]
 
 const routes = [
     // spread operator expand the result of filter into an array
     ...childRoutes.filter(r => r.component || (r.childRoutes && r.childRoutes.length > 0)),
-    {
-        path: '*',
-        name: 'Page not found',
-        component: PageNotFound
-    }
 ]
 
 // recursively find the index route node and handle that

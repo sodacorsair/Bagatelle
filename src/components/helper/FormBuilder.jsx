@@ -49,6 +49,16 @@ function getLastIndex(dynamic = false, elements) {
     return els.length - 1;
 }
 
+function renderWidget(element, widgetProps) {
+    let res;
+    if (typeof element.widget === 'function') {
+        res = <element.widget {...widgetProps}>{element.children || null}</element.widget>;
+    } else if (typeof element.widget === 'object') {
+        res = element.widget;
+    }
+    return res;
+}
+
 const defaultFormItemLayout = {
     labelCol: {
         xs: { span: 24 },
@@ -184,9 +194,7 @@ const defaultFormItemLayout = {
                 <Fragment key={element.id || element.key}>
                     <FormItem {...formItemProps}>
                         {getFieldDecorator(element.id || element.key, fieldProps)(
-                            <element.widget {...widgetProps}>
-                                {element.children || null}
-                            </element.widget>
+                            renderWidget(element, widgetProps)
                         )}
                     </FormItem>
                     <FormItem wrapperCol={wrapperCol} key={index + 1}>
@@ -198,9 +206,7 @@ const defaultFormItemLayout = {
             return (
                 <FormItem {...formItemProps}>
                     {getFieldDecorator(element.id || element.key, fieldProps)(
-                        <element.widget {...widgetProps}>
-                            {element.children || null}
-                        </element.widget>
+                        renderWidget(element, widgetProps)
                     )}
                 </FormItem>
             )

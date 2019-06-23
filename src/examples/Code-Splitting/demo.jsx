@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Demo = () => {
-    return <div>home demo</div>
+    return <div>async demo</div>
 }
 
 export default Demo;

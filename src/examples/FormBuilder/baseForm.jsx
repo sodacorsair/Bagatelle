@@ -5,7 +5,7 @@ const Option = Select.Option
 
 const genderOptions = [{ value: 0, label: 'Male' }, { value: 1, label: 'Female' }].map(item => (
     <Option key={item.value} value={item.value}>
-        {item.value}
+        {item.label}
     </Option>
 ))
 
@@ -25,19 +25,19 @@ const formMeta = {
         {
             key: 'password',
             label: 'Password',
-            widget: Input,
-            widgetProps: {
-                prefix: <Icon type="lock" style={{ color: 'rgba(0,0,0,.25' }} />,
-                placeholder: '请输入密码'
-            },
-            type: 'password',
+            widget: (
+                <Input
+                    type="password"
+                    prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                    placeholder="please input your password"
+                />
+            ),
             required: true,
         },
         {
             key: 'date',
             label: 'Birth date',
-            widget: DatePicker,
-            widgetProps: { style: { width: '100%' } }
+            widget: <DatePicker style={{ width: '100%' }} />,
         },
         {
             key: 'gender',
@@ -89,7 +89,7 @@ class FormSubmitAntd extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.form.validateFieldAndScroll((errors, values) => {
+        this.props.form.validateFieldsAndScroll((errors, values) => {
             if (errors) return;
             console.log('submit form: ', values)
         })
