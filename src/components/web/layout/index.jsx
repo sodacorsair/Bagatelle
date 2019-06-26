@@ -3,27 +3,32 @@ import './index.less';
 import PropTypes from 'prop-types';
 
 import Header from '../header';
-import { Layout, Icon } from 'antd';
+import { Layout, Row, Col, BackTop } from 'antd';
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Footer } = Layout;
 
 class WebLayout extends Component {
-    static propTypes = {
-        children: PropTypes.node,
-    }
 
     render() {
+        const leftSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
+        const content = { xxl: 20, xl: 20, lg: 20, sm: 24, xs: 24 };
+        const rightSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
+
         return (
-            <Layout>
-                <div className="app-container">
-                    <Header />
-                </div>
-                <Layout>
-                    <Content>{this.props.children}</Content>
-                    <Sider theme="light">Sider</Sider>
-                </Layout>
-                <Footer style={{ textAlign: 'center'}}>
-                    Copyright © 2019 SodaCorsair
+            <Layout className="app-container">
+                <Header />
+                <Row className="main-wrapper">
+                    <Col {...leftSide} />
+                    <Col {...content}>
+                        <div className="content-wrapper">
+                            {this.props.children}
+                        </div>
+                    </Col>
+                    <Col {...rightSide} />
+                </Row>
+                <BackTop target={() => document.querySelector('.content-wrapper')} />
+                <Footer className="footer">
+                    Copyright© 2019 SodaCorsair
                 </Footer>
             </Layout>
         )

@@ -106,7 +106,7 @@ module.exports = function(webpackEnv) {
         },
       },
       {
-        loader: require.resolve('less-loader'),
+        loader: require.resolve('less-loader'), 
         options: cssOptions
       },
     ].filter(Boolean);
