@@ -5,6 +5,9 @@ import App from './App';
 import '@/style/index.less';
 import { Provider } from 'react-redux';
 import store from '@/redux';
+import axios from '@/lib/axios';
+
+React.Component.prototype.axios = axios;
 
 const render = Component => {
     ReactDOM.render(

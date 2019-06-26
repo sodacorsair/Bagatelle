@@ -8,6 +8,8 @@ import PageNotFound from '@/components/NotFound';
 
 const Demo = lazy(() => import('./Code-Splitting'));
 const AuthPage = lazy(() => import('./AuthPage'));
+const Write = lazy(() => import('./markdown/write'));
+const Show = lazy(() => import('./markdown/show'));
 
 export default {
     path: 'examples',
@@ -18,6 +20,10 @@ export default {
         { path: 'code-splitting', component: CodeSplitting },
         { path: 'demo', component: Demo },
         { path: 'auth', protected: true, component: AuthPage },
+        {
+            path: 'markdown',
+            childRoutes: [{ path: 'write', component: Write }, { path: 'show', component: Show }],
+        },
         { path: '*', component: PageNotFound },
     ]
 }

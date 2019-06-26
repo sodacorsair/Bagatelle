@@ -28,7 +28,7 @@ class WebLayout extends Component {
                 </Row>
                 <BackTop target={() => document.querySelector('.content-wrapper')} />
                 <Footer className="footer">
-                    Copyright© 2019 SodaCorsair
+                    © 2019 Motivated Strongly by Bagatelle!
                 </Footer>
             </Layout>
         )
