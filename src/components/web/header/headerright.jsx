@@ -35,7 +35,7 @@ class HeaderRight extends Component {
             <div id="header-right">
                 {isLogin ? (
                     <Dropdown placement="bottomCenter" overlay={this.renderAvatarDropMenu()} trigger={['click']}>
-                        <Avatar>
+                        <Avatar style={{ cursor: "pointer" }}>
                             "sodacorsair"
                         </Avatar>
                     </Dropdown>

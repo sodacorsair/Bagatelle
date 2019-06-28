@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Dropdown } from 'antd';
 
 @withRouter
 class Navigator extends Component {
+
+    renderCatalogueMenu() {
+        return (
+            <Menu>
+                <Menu.Item>
+                    <Link to={'/archives'}>
+                        归档
+                    </Link>
+                    <Link to={'/archives'}>
+                        归档
+                    </Link>
+                </Menu.Item>
+            </Menu>
+        )
+    }
 
     render() {
         const { navList } = this.props;

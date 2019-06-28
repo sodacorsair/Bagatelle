@@ -16,12 +16,8 @@ const navList = [
         link: '/',
     },
     {
-        title: '文章',
-        link: '/articles',
-    },
-    {
-        title: '分类',
-        link: '/categories',
+        title: '目录',
+        link: '/archives',
     },
     {
         title: '关于',

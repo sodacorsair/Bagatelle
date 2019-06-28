@@ -4,66 +4,63 @@ import Loading from '@/components/Loading'
 import routes from '@/routes/config';
 import { connect } from 'react-redux';
 
-@connect(state => ({
-  isLogin: state.demo.isLogin,
-}))
+const Root = (props) => {
+    const renderRoutes = (routes, contextPath) => {
+        const children = []
 
-class Root extends Component {
-  renderRoutes = (routes, contextPath) => {
-    const children = []
+        const renderRoute = (item, routeContextPath) => {
 
-    const renderRoute = (item, routeContextPath) => {
-      
-      if (item.protected && !this.props.isLogin) {
-        item = {
-          ...item,
-          component: () => <Redirect to="/admin/login" />,
-          children: [],
+            if (item.protected && !props.isLogin) {
+                item = {
+                    ...item,
+                    component: () => <Redirect to="/admin/login" />,
+                    children: [],
+                }
+            }
+
+            let newContextPath = item.path ? `${routeContextPath}/${item.path}` : routeContextPath
+            newContextPath = newContextPath.replace(/\/+/g, '/')
+
+            // let newContextPath;
+            // if (/^\//.test(item.path)) {
+            //     newContextPath = item.path;
+            // } else {
+            //     newContextPath = `${routeContextPath}/${item.path}`
+            // }
+            // newContextPath = newContextPath.replace(/\/+/g, '/');
+
+            if (item.component && item.childRoutes) {
+                const childRoutes = renderRoutes(item.childRoutes, newContextPath);
+                children.push(
+                    <Route
+                        key={newContextPath}
+                        render={props => <item.component {...props}>{childRoutes}</item.component>}
+                        path={newContextPath}
+                    />
+                )
+            } else if (item.component) {
+                children.push(<Route key={newContextPath} component={item.component} path={newContextPath} exact />);
+            } else if (item.childRoutes) {
+                item.childRoutes.forEach(r => renderRoute(r, newContextPath))
+            }
         }
-      }
 
-      let newContextPath;
-      if (/^\//.test(item.path)) {
-        newContextPath = item.path;
-      } else {
-        newContextPath = `${routeContextPath}/${item.path}`
-      }
-      newContextPath = newContextPath.replace(/\/+/g, '/');
+        routes.forEach(item => renderRoute(item, contextPath))
 
-      if (item.component && item.childRoutes) {
-        const childRoutes = this.renderRoutes(item.childRoutes, newContextPath);
-        children.push(
-          <Route
-            key={newContextPath}
-            render={ props => <item.component {...props}>{childRoutes}</item.component>}
-            path={newContextPath}
-          />
-        )
-      } else if (item.component) {
-        if (typeof item.component === 'function') {
-          children.push(<Route key={newContextPath} component={item.component} path={newContextPath} exact/>)
-        } else {
-          children.push(<Route key={newContextPath} component={() => <item.component />} path={newContextPath} exact/>)
-        }
-      } else if (item.childRoutes) {
-        item.childRoutes.forEach(r => renderRoute(r, newContextPath))
-      }
+        return <Switch>{children}</Switch>
     }
 
-    routes.forEach(item => renderRoute(item, contextPath))
 
-    return <Switch>{children}</Switch>
-  }
-
-  render() {
-    const children = this.renderRoutes(routes, '/');
+    const children = renderRoutes(routes, '/');
     return (
-      <BrowserRouter>
-        <Suspense fallback={<Loading />}>{children}</Suspense>
-      </BrowserRouter>
-    )
-  }
+        <BrowserRouter>
+            {children}
+        </BrowserRouter>
+    );
+
 
 }
 
-export default Root;
+export default connect(
+    state => state.user, {}
+)(Root);
