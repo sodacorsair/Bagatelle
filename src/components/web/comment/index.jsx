@@ -2,7 +2,7 @@ import React, { Component, Fragment, useState, useEffect } from 'react';
 import './index.less';
 import axios from '@/lib/axios';
 import { connect } from 'react-redux';
-
+import ReactMarkdown from 'react-markdown';
 import { getCommentsCount } from '@/lib';
 import { login, logout } from '@/redux/user/actionCreators';
 
@@ -56,7 +56,7 @@ function ArticleComment(props) {
                 </span>
                 <span>{articleId !== -1 ? '条评论' : '条留言'}</span>
                 <span className="menu-wrapper">
-                    <Dropdown overlay={renderDropDownMenu()} trigger={['click', 'hover']}>
+                    <Dropdown overlay={renderDropDownMenu()} trigger={[]}>
                         <span>
                             {username ? username : '未登录用户'} <Icon type="down" />
                         </span>
@@ -89,6 +89,14 @@ function ArticleComment(props) {
                     />
                 }
             />
+
+            {commentList.map(comment => (
+                <Comment key={comment.id} content={<ReactMarkdown source={comment.content} />}>
+                    {comment.replies.map(reply => (
+                        <Comment key={reply.id} content={<ReactMarkdown source={reply.content} />} />
+                    ))}
+                </Comment>
+            ))}
         </div>
     )
 }

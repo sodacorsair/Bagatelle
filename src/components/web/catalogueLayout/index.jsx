@@ -10,20 +10,20 @@ class CatalogueLayout extends Component {
 
         return (
             <Layout className="catalogue-wrapper">
-                <Button.Group>
-                    <Button>
+                <Button.Group className="select-wrapper">
+                    <Button className="select-button">
                         <Link to={'/tags'}>Tags</Link>
                     </Button>
-                    <Button>
+                    <Button className="select-button">
                         <Link to={'/archives'}>Archives</Link>
                     </Button>
-                    <Button>
+                    <Button className="select-button">
                         <Link to={'/volumes'}>Volumes</Link>
                     </Button>
                 </Button.Group>
                 <Row >
                     <Col>
-                        <div>
+                        <div className="list-wrapper">
                             {this.props.children}
                         </div>
                     </Col>

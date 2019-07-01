@@ -1,7 +1,7 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import './index.less';
 import { connect } from 'react-redux';
-
+import ReactMarkdown from 'react-markdown';
 import Loading from '@/components/helper/loading';
 import axios from '@/lib/axios';
 import Comment from '@/components/web/comment';
@@ -16,8 +16,6 @@ function Article(props) {
     const [commentList, setCommentList] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    console.log(props);
-
     useEffect(() => {
         (id => {
             setLoading(true);
@@ -31,7 +29,6 @@ function Article(props) {
                     setPostTime(postTime);
                     setCommentList(comments);
                     setLoading(false);
-                    console.log(props);
                 })
                 .catch(err => {
                     props.history.push('/404');
@@ -41,7 +38,7 @@ function Article(props) {
 
     const articleId = parseInt(props.match.params.id)
     return (
-        <div className="article">
+        <div className="content-inner-wrapper article">
             {loading ? (
                 <Loading />
             ) : (
@@ -60,7 +57,7 @@ function Article(props) {
                             </div>
                         </div>
 
-                        <div className="article-content">{content}</div>
+                        <ReactMarkdown source={content} escapeHtml={false} />
 
                         <Comment articleId={articleId} commentList={commentList} setCommentList={setCommentList} />
                     </Fragment>

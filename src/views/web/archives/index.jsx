@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import { groupBy } from '@/lib'
 import { Timeline, Icon, Pagination, Spin } from 'antd'
+import { loadingIcon } from '@/components/Loading';
 import BlogPagination from '@/components/web/pagination'
 import axios from '@/lib/axios'
 
@@ -38,8 +39,8 @@ function Archives(props) {
     }
 
     return (
-        <div className="content-inner-wrapper archives">
-            <Spin tip="Loading..." spinning={loading}>
+        <div className="inner-content-wrapper archives">
+            <Spin className="loading" tip="Loading..." indicator={loadingIcon} spinning={loading}>
                 <Timeline>
                     {list.map((d, i) => (
                         <Fragment key={i}>

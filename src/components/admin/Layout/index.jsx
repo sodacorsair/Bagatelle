@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import './index.less';
 import PropTypes from 'prop-types';
 
-import Header from '../../header';
+import Header from '../header';
 import { Layout, Row, Col, BackTop } from 'antd';
 
 const { Content, Footer } = Layout;
 
-class WebLayout extends Component {
+class AdminLayout extends Component {
 
     render() {
-        const leftSide = { xxl: 5, xl: 5, lg: 5, sm: 0, xs: 0 };
-        const content = { xxl: 19, xl: 19, lg: 19, sm: 24, xs: 24 };
+        const leftSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
+        const content = { xxl: 22, xl: 22, lg: 22, sm: 24, xs: 24 };
         const rightSide = { xxl: 0, xl: 0, lg: 0, sm: 0, xs: 0 };
 
         return (
@@ -26,10 +26,9 @@ class WebLayout extends Component {
                     </Col>
                     <Col {...rightSide} />
                 </Row>
-                <BackTop target={() => document.querySelector('.content-wrapper')} />
             </Layout>
         )
     }
 }
 
-export default WebLayout;
+export default AdminLayout;

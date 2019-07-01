@@ -6,7 +6,7 @@ import { Divider, Rate, Icon, Avatar } from 'antd';
 const About = (props) => {
 
     return (
-        <div>
+        <div className="content-inner-wrapper">
             <Avatar>
                 SodaCorsair
             </Avatar>
