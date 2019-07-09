@@ -25,6 +25,7 @@ function Archives(props) {
         axios
             .get('/article/getList', { params: { page, pageSize: 15 } })
             .then(res => {
+                console.log(res);
                 const list = groupBy(res.rows, item => item.createdAt.slice(0, 4))
                 setList(list)
                 setTotal(res.count)

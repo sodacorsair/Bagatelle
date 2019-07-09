@@ -3,7 +3,8 @@ import { message } from 'antd'
 // import NProgress from 'nprogress'
 
 const instance = axios.create({
-    baseURL: 'http://120.79.10.11:6060', // api的base_url
+    // baseURL: 'http://120.79.10.11:6060', // api的base_url
+    baseURL: 'http://127.0.0.1:8088',
     timeout: 20000 // 请求超时时间
 })
 
