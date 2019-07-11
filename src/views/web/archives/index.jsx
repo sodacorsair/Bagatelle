@@ -6,7 +6,8 @@ import { groupBy } from '@/lib'
 import { Timeline, Icon, Pagination, Spin } from 'antd'
 import { loadingIcon } from '@/components/Loading';
 import BlogPagination from '@/components/web/pagination'
-import axios from '@/lib/axios'
+// import axios from '@/lib/axios'
+import axios from 'axios';
 
 function Archives(props) {
     const [list, setList] = useState([])
@@ -21,17 +22,23 @@ function Archives(props) {
     }, [])
 
     function fetchList(page = 1) {
-        setLoading(true)
-        axios
-            .get('/article/getList', { params: { page, pageSize: 15 } })
+        // setLoading(true)
+        // axios
+        //     .get('http://120.79.10.11:6060/article/getList', { params: { page, pageSize: 15 } })
+        //     .then(res => {
+        //         console.log(res);
+        //         const list = groupBy(res.rows, item => item.createdAt.slice(0, 4))
+        //         setList(list)
+        //         setTotal(res.count)
+        //         setLoading(false)
+        //     })
+        // .catch(e => setLoading(false))
+        axios.get('http://127.0.0.1:8088/awsl')
             .then(res => {
                 console.log(res);
-                const list = groupBy(res.rows, item => item.createdAt.slice(0, 4))
-                setList(list)
-                setTotal(res.count)
-                setLoading(false)
             })
-            .catch(e => setLoading(false))
+            .catch(e => {
+            })
     }
 
     function handlePageChange(page) {
