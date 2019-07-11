@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button, message, Icon, Input } from 'antd';
-import { login } from '@/redux/demo/actionCreators';
+import { register } from '@/redux/demo/actionCreators';
 
 import './index.less';
 import logo from '@/assets/go-rocker.svg';
@@ -10,9 +10,9 @@ import logo from '@/assets/go-rocker.svg';
 @withRouter
 @connect(
     null,
-    { login }
+    { register }
 )
-class Login extends Component {
+class Register extends Component {
     state = {
         username: '',
         password: '',
@@ -48,7 +48,7 @@ class Login extends Component {
                         style={{ width: '100%' }}
                         size="large" type="primary"
                         onClick={this.handleSubmit}>
-                        登录
+                        注册
                     </Button>
                 </div>
             </div>
@@ -56,4 +56,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Register;

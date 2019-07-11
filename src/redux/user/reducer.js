@@ -2,14 +2,16 @@ import * as constants from './constants'
 
 // state
 const defaultState = {
-    isLogin: false,
+    userid: 0,
+    username: '',
+    permission: 3,
 }
 
 // reducer
 export default (state = defaultState, action) => {
     switch (action.type) {
         case constants.USER_LOGIN:
-            return { ...state, isLogin: true };
+            return { ...action.payload };
         case constants.USER_LOGOUT:
             return { ...state, isLogin: false };
         default:
