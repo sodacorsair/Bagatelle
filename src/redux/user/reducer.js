@@ -14,6 +14,9 @@ export default (state = defaultState, action) => {
             return { ...action.payload };
         case constants.USER_LOGOUT:
             return { ...state, isLogin: false };
+        case constants.USER_REGISTER:
+            const { userid, username, permission } = action.payload;
+            return { ...state, userid, username, permission };
         default:
             return state;
     }

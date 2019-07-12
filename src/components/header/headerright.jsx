@@ -5,10 +5,7 @@ import { Button, Dropdown, Avatar, Menu } from 'antd';
 import { login, logout } from '@/redux/user/actionCreators';
 
 @connect(
-    state => ({
-        isLogin: state.user.isLogin,
-        avatarColor: state.user.avatarColor,
-    }),
+    state => state.user,
     { logout, login }
 )
 class HeaderRight extends Component {
@@ -29,14 +26,14 @@ class HeaderRight extends Component {
     )
 
     render() {
-        const { isLogin, avatarColor } = this.props;
+        const { username } = this.props;
 
         return (
             <div id="header-right">
-                {isLogin ? (
+                {username ? (
                     <Dropdown placement="bottomCenter" overlay={this.renderAvatarDropMenu()} trigger={['click']}>
                         <Avatar style={{ cursor: "pointer" }}>
-                            "sodacorsair"
+                            {username}
                         </Avatar>
                     </Dropdown>
                 ) : (

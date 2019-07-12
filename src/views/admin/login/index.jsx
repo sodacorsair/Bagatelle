@@ -18,7 +18,17 @@ class Login extends Component {
         password: '',
     }
 
-    handleSubmit = 
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    handleSubmit = async () => {
+        await this.props.login(this.state);
+        if (this.state.permission === 2) {
+            this.props.history.push('/admin');
+            message.success('登录成功');
+        }
+    }
 
     render() {
         return (

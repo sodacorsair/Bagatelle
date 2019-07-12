@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button, message, Icon, Input } from 'antd';
-import { register } from '@/redux/demo/actionCreators';
+import { register } from '@/redux/user/actionCreators';
 
 import './index.less';
 import logo from '@/assets/go-rocker.svg';
 
 @withRouter
 @connect(
-    null,
+    state => state.user,
     { register }
 )
 class Register extends Component {
@@ -18,7 +18,20 @@ class Register extends Component {
         password: '',
     }
 
-    handleSubmit = 
+    handleChange = e => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    handleSubmit = async () => {
+        await this.props.register({ username: this.state.username, password: this.state.password });
+        if (this.props.permission === 2) {
+            this.props.history.push("/admin");
+            message.success('注册成功');
+        } else {
+            this.props.history.push("/");
+            message.success('注册成功');
+        }
+    }
 
     render() {
         return (
@@ -29,9 +42,8 @@ class Register extends Component {
                         size="large"
                         style={{ marginBottom: 25 }}
                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        name="Username"
+                        name="username"
                         placeholder="Username"
-                        value={this.state.username}
                         onChange={this.handleChange}
                     />
                     <Input
@@ -39,9 +51,8 @@ class Register extends Component {
                         style={{ marginBottom: 25 }}
                         prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                         type="password"
-                        name="Password"
+                        name="password"
                         placeholder="Password"
-                        value={this.state.password}
                         onChange={this.handleChange}
                     />
                     <Button
