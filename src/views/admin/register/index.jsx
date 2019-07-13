@@ -24,7 +24,7 @@ class Register extends Component {
 
     handleSubmit = async () => {
         await this.props.register({ username: this.state.username, password: this.state.password });
-        if (this.props.permission === 2) {
+        if (this.props.permission === 0) {
             this.props.history.push("/admin");
             message.success('注册成功');
         } else {

@@ -27,7 +27,7 @@ class LoginModel extends Component {
     handleSubmit = () => {
         const type = this.props.type;
         console.log('click button', type);
-        type === 'login' ? this.props.login() : this.props.loginout();
+        type === 'login' ? this.props.history.push('/admin/login') : this.props.logout;
         this.props.handleClose(type);
     }
 

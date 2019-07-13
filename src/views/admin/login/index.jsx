@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button, message, Icon, Input } from 'antd';
-import { login } from '@/redux/demo/actionCreators';
+import { login } from '@/redux/user/actionCreators';
 
 import './index.less';
 import logo from '@/assets/go-rocker.svg';
 
 @withRouter
 @connect(
-    null,
+    state => state.user,
     { login }
 )
 class Login extends Component {
@@ -24,9 +24,12 @@ class Login extends Component {
 
     handleSubmit = async () => {
         await this.props.login(this.state);
-        if (this.state.permission === 2) {
+        if (this.props.permission === 0) {
             this.props.history.push('/admin');
             message.success('登录成功');
+        } else {
+            this.props.history.push('/');
+            message.success('登录成功')
         }
     }
 
@@ -39,9 +42,8 @@ class Login extends Component {
                         size="large"
                         style={{ marginBottom: 25 }}
                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        name="Username"
+                        name="username"
                         placeholder="Username"
-                        value={this.state.username}
                         onChange={this.handleChange}
                     />
                     <Input
@@ -49,9 +51,8 @@ class Login extends Component {
                         style={{ marginBottom: 25 }}
                         prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                         type="password"
-                        name="Password"
+                        name="password"
                         placeholder="Password"
-                        value={this.state.password}
                         onChange={this.handleChange}
                     />
                     <Button

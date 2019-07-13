@@ -16,7 +16,7 @@ class WebLayout extends Component {
 
         return (
             <Layout className="app-container">
-                <Header />
+                <Header history={this.props.history} />
                 <Row className="main-wrapper">
                     <Col {...leftSide} />
                     <Col {...content}>
