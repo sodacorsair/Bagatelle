@@ -3,8 +3,10 @@ import * as constants from './constants';
 const defaultState = {
     content: '',
     isPreview: false,
-    taglist: ['js', 'f++'],
+    taglist: [],
     catelist: [],
+    seletaglist: [],
+    selecatelist: [],
 }
 
 export default (state = defaultState, action) => {
@@ -17,6 +19,10 @@ export default (state = defaultState, action) => {
             return { ...state, taglist: action.list };
         case constants.ARTICLE_CATELIST:
             return { ...state, catelist: action.list };
+        case constants.ARTICLE_SELETAGLIST:
+            return { ...state, seletaglist: action.list };
+        case constants.ARTICLE_SELECATELIST:
+            return { ...state, selecatelist: action.list };
         default:
             return state;
     }

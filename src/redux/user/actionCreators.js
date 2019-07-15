@@ -5,14 +5,13 @@ import { message } from 'antd';
 export const login = (params) => {
     return dispatch =>
         axios.post('/login', params)
-        .then(res => {
-            console.log(res)
-            if (res.code === 200) {
-                dispatch({ type: constants.USER_LOGIN, payload: { userid: res.userid, username: res.username, permission: res.permission } });
-            } else {
-                message.error(res.message);
-            }
-        })
+            .then(res => {
+                if (res.code === 200) {
+                    dispatch({ type: constants.USER_LOGIN, payload: { userid: res.userid, username: res.username, permission: res.permission } });
+                } else {
+                    message.error(res.message);
+                }
+            })
 }
 
 export const logout = () => ({
