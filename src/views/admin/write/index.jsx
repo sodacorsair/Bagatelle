@@ -71,13 +71,12 @@ class Write extends React.Component {
             message.error('请输入标题！');
             return;
         }
-        console.log(submitTags);
         axios.post('/article/post', { submitTags, submitCates, submitTitle, submitContent, submitTop, submitPrivate })
             .then(res => {
-                console.log(res);
+                message.success('文章发表成功');
             })
             .catch(res => {
-                console.log(res);
+                message.error('文章发表失败');
             });
     }
 
