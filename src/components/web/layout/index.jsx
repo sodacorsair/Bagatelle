@@ -10,9 +10,9 @@ const { Content, Footer } = Layout;
 class WebLayout extends Component {
 
     render() {
-        const leftSide = { xxl: 5, xl: 5, lg: 5, sm: 0, xs: 0 };
-        const content = { xxl: 19, xl: 19, lg: 19, sm: 24, xs: 24 };
-        const rightSide = { xxl: 0, xl: 0, lg: 0, sm: 0, xs: 0 };
+        const leftSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
+        const content = { xxl: 20, xl: 20, lg: 20, sm: 24, xs: 24 };
+        const rightSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
 
         return (
             <Layout className="app-container">

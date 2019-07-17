@@ -15,7 +15,7 @@ export default {
         { path: '', component: Home },
         { path: 'article/:id', component: Article },
         {
-            path: '',
+            path: '/',
             component: CatalogueLayout,
             childRoutes: [
                 { path: 'archives', component: Archives }
