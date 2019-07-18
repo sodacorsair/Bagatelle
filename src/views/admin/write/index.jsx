@@ -58,6 +58,17 @@ class Write extends React.Component {
             autofocus: true,
             autosave: true
         });
+
+        if (this.props.history.location.state) {
+            const { articleId } = this.props.history.location.state
+            this.axios.get(`/article/get/${articleId}`).then(res => {
+              const { title, tags, categories, content } = res.data
+              this.smde.value(content)
+              const tagList = tags.map(d => d.name)
+              const categoryList = categories.map(d => d.name)
+              this.setState({ title, tagList, categoryList, isEdit: true, articleId })
+            })
+        }
     }
 
     handleSubmit = () => {

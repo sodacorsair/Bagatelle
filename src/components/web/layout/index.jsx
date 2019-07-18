@@ -10,21 +10,15 @@ const { Content, Footer } = Layout;
 class WebLayout extends Component {
 
     render() {
-        const leftSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
-        const content = { xxl: 20, xl: 20, lg: 20, sm: 24, xs: 24 };
-        const rightSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
-
         return (
             <Layout className="app-container">
                 <Header history={this.props.history} />
                 <Row className="main-wrapper">
-                    <Col {...leftSide} />
-                    <Col {...content}>
+                    <Col >
                         <div className="content-wrapper">
                             {this.props.children}
                         </div>
                     </Col>
-                    <Col {...rightSide} />
                 </Row>
                 <BackTop target={() => document.querySelector('.content-wrapper')} />
             </Layout>
