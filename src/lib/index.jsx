@@ -1,6 +1,10 @@
 
 import xss from 'xss'
 
+export const leftSide = { xxl: 6, xl: 4, lg: 4, sm: 0, xs: 0 };
+export const middle = { xxl: 12, xl:16, lg: 16, sm: 24, xs: 24 };
+export const rightSide = { xxl: 6, xl: 4, lg: 4, sm: 0, xs: 0 };
+
 // 获取 url query 参数
 export const decodeQuery = url => {
   let params = {}

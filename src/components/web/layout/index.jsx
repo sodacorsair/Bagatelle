@@ -13,8 +13,8 @@ class WebLayout extends Component {
         return (
             <Layout className="app-container">
                 <Header history={this.props.history} />
-                <Row className="main-wrapper">
-                    <Col >
+                <Row >
+                    <Col className="layout-wrapper">
                         <div className="content-wrapper">
                             {this.props.children}
                         </div>

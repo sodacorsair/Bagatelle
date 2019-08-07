@@ -1,8 +1,9 @@
 import React, { Component, Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from '@/lib/axios';
+import { leftSide, rightRide, middle } from '@/lib';
 import './index.less';
-import { Icon, Divider, Empty, Drawer } from 'antd';
+import { Icon, Divider, Empty, Drawer, Col, Row } from 'antd';
 
 import Loading from '@/components/helper/loading';
 
@@ -16,162 +17,7 @@ const Home = (props) => {
                 <Loading />
             ) : (
                     <Fragment>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="center">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
-                        <ul className="ul-list">
-                            <li>
-                                <Divider orientation="left">
-                                    title
-                            </Divider>
-                                <div>
-                                    this is paragraph
-                            </div>
-                                <div>
-                                    there're 3 comments
-                            </div>
-                            </li>
-                        </ul>
+                        
                     </Fragment>
                 )}
         </div>

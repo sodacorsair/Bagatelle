@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import Loading from "@/components/helper/loading";
 import axios from '@/lib/axios';
+import { leftSide, rightSide, middle } from '@/lib';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from '@/components/markdown/codeblock';
@@ -19,10 +20,6 @@ function Article(props) {
     const [postTime, setPostTime] = useState('');
     const [updateTime, setUpdateTime] = useState('');
     const [reads, setReads] = useState(0);
-
-    const leftSide = { xxl: 6, xl: 4, lg: 4, sm: 0, xs: 0 };
-    const middle = { xxl: 12, xl:16, lg: 16, sm: 24, xs: 24 };
-    const rightSide = { xxl: 6, xl: 4, lg: 4, sm: 0, xs: 0 };
 
     useEffect(() => {
         (id => {
@@ -96,7 +93,7 @@ function Article(props) {
                                 ))}
                             </div>
 
-                            <Comment />
+                            {/* <Comment /> */}
                         </Col>
                         <Col {...rightSide} />
                     </Fragment>

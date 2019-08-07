@@ -5,6 +5,7 @@ import CatalogueLayout from '@/components/web/catalogueLayout';
 import Home from './home';
 import Article from './article';
 import Archives from './archives';
+import TagList from './taglist';
 import PageNotFound from '@/components/NotFound';
 
 export default {
@@ -18,7 +19,8 @@ export default {
             path: '/',
             component: CatalogueLayout,
             childRoutes: [
-                { path: 'archives', component: Archives }
+                { path: 'archives', component: Archives },
+                { path: 'tags', component: TagList },
             ]
         },
         { path: '*', component: PageNotFound },
