@@ -1,10 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Row, Col, Button } from 'antd';
+import { Layout, Row, Col, Button, Radio } from 'antd';
 
 import './index.less';
 
 class CatalogueLayout extends Component {
+    state = {
+        pathname: 'archives',
+    }
+
+    handleClick = e => {
+        this.props.history.push(`/${e.target.value}`);
+        this.setState({pathname: e.target.value});
+    }
 
     render() {
         const leftSide = { xxl: 18, xl: 18, lg: 18, sm: 24, xs: 24 };
@@ -13,17 +21,17 @@ class CatalogueLayout extends Component {
             <Layout className="catalogue-wrapper">
                 <Row>
                     <Col {...leftSide}>
-                        <Button.Group className="select-wrapper">
-                            <Button className="select-button">
-                                <Link to={'/tags'}>Tags</Link>
-                            </Button>
-                            <Button className="select-button">
-                                <Link to={'/archives'}>Archives</Link>
-                            </Button>
-                            <Button className="select-button">
-                                <Link to={'/categories'}>Volumes</Link>
-                            </Button>
-                        </Button.Group>
+                        <Radio.Group className="select-wrapper" onChange={this.handleClick} value={this.state.pathname}>
+                            <Radio.Button className="select-button" value="tags">
+                                Tags
+                            </Radio.Button>
+                            <Radio.Button className="select-button" value="archives">
+                                Archives
+                            </Radio.Button>
+                            <Radio.Button className="select-button" value="categories">
+                                Categories
+                            </Radio.Button>
+                        </Radio.Group>
                     </Col>
                     <Col {...rightSide} />
                 </Row>

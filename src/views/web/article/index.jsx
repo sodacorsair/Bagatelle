@@ -57,9 +57,9 @@ function Article(props) {
 
                                 <br />
                                 <div className="aritcle-attri">
-                                        &nbsp; 发表于 &nbsp;
+                                        &nbsp; posted at &nbsp;
                                     <span>{postTime}</span>
-                                        &nbsp; 最后编辑于 &nbsp;
+                                        &nbsp; recently updated at &nbsp;
                                     <span>{postTime}</span>
                                 </div>
                             </div>
@@ -75,13 +75,13 @@ function Article(props) {
 
                             <Divider type="horizontal" />
                             <div>
-                                <span>类别 </span>
+                                <span>category </span>
                                 {cates.map((item) => (
                                     <Tag color={'#556B2F'} key={item.Name}>
                                         <Link to={`/cates/${item.Name}`}>{item.Name}</Link>
                                     </Tag>
                                 ))}
-                                <span>标签 </span>
+                                <span>tag </span>
                                 {tags.map((item) => (
                                     <Tag color={'#000080'} key={item.Name}>
                                         <Link 

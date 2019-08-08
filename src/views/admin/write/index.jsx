@@ -85,6 +85,9 @@ class Write extends React.Component {
         axios.post('/article/post', { submitTags, submitCates, submitTitle, submitContent, submitTop, submitPrivate })
             .then(res => {
                 message.success('文章发表成功');
+                const { articleid } = res;
+                console.log(articleid);
+                this.props.history.push(`/article/${articleid}`)
             })
             .catch(res => {
                 message.error('文章发表失败');

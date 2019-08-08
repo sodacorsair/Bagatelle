@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Badge, Tag } from 'antd';
+import { Badge, Tag, Col } from 'antd';
 import axios from '@/lib/axios';
+import { leftSide, rightSide, middle } from '@/lib';
+
+import './index.less';
 
 class TagList extends Component {
 
@@ -13,47 +16,53 @@ class TagList extends Component {
         axios.get('tags/all')
             .then(res => {
                 const { taglist } = res;
-                console.log(taglist);
-                this.deduplicate(JSON.stringify(taglist));
+                this.deduplicate(taglist);
             })
             .catch(res => {
 
             });
     }
 
-    deduplicate(list) {
-        console.log("list: " + list);
-        list.sort((a, b) => {
+    deduplicate(tags) {
+        tags.sort((a, b) => {
             return a.Name > b.Name ? 1 : -1;
         });
-        
-        newList = [];
-        tag = '';
-        for (i = 0; i < list.length; i++) {
-            console.log("name: " + list[i].Name);
-            if (tag !== list[i].Name) {
-                tag = list[i].Name;
+
+        let newList = [];
+        let tag = '';
+
+        for (var i = 0; i < tags.length; i++) {
+            if (tag !== tags[i].Name) {
+                tag = tags[i].Name;
                 newList.push(tag);
             }
         }
-        this.setState({taglist: list});
-        console.log("taglist: " + list);
+        this.setState({taglist: newList});
     }
 
     render() {
         const { taglist } = this.state;
+        console.log(taglist);
 
         return (
             <div className="content-inner-wrapper catalogue">
                  
-
-                <div>
-                    {taglist.map(item => (
-                            <Badge key={item}>
-                                <Tag>{item.Name}</Tag>
-                            </Badge>
-                        ))}
-                </div>
+                <Col {...leftSide} />
+                <Col {...middle}>
+                    <div className="tag-list">
+                        {taglist.map(item => (
+                                <Badge key={item} className="tag-item">
+                                    <Tag>
+                                        <span className="tag-name">
+                                            <a href={`/tag/${item}`}>{item}</a>
+                                        </span>
+                                    </Tag>
+                                </Badge>
+                            ))}
+                    </div>
+                </Col>
+                <Col {...rightSide} />
+                
             </div>
         )
     }
