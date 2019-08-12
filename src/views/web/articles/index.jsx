@@ -38,9 +38,10 @@ class ArticleList extends Component {
         // this.setState({ loading: true });
         this.axios.get(`/${type}/get`, { params: { page, pageSize: 15, name } })
             .then(res => {
-                this.setState({ })
+                const { list: items } = res;
+                this.setState({ list: list });
             })
-            .catch(e => this.setState({ loading: false }))
+            .catch(e => this.setState({ loading: false }));
     }
     
     render() {
@@ -59,7 +60,7 @@ class ArticleList extends Component {
 
                             {list.map(item => (
                                 <div className="article-item" key={item}>
-                                    <span>{item}</span>
+                                    <span>{item.name}</span>
                                 </div>
                             ))}
                         </div>
