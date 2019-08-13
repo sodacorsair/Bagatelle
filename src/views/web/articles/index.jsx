@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import './index.less';
+import './index.less';
 import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
-import { Col, Pagination, Spin } from 'antd';
+import { Col, Pagination, Spin, Divider } from 'antd';
 import BlogPagination from '@/components/web/pagination';
 import { leftSide, middle, rightSide } from '../../../lib';
 
@@ -35,13 +35,11 @@ class ArticleList extends Component {
     }
 
     fetchList = ({ page = 1, name, type }) => {
-        // this.setState({ loading: true });
         this.axios.get(`/${type}/get`, { params: { page, pageSize: 15, name } })
             .then(res => {
-                const { list: items } = res;
-                this.setState({ list: list });
-            })
-            .catch(e => this.setState({ loading: false }));
+                console.log(res.articleItems);
+                this.setState({ list: res.articleItems });
+            });
     }
     
     render() {
@@ -59,8 +57,14 @@ class ArticleList extends Component {
                             </h1>
 
                             {list.map(item => (
-                                <div className="article-item" key={item}>
-                                    <span>{item.name}</span>
+                                <div>
+                                    <div className="article-item" key={item}>
+                                        <span>{item.createdAt}</span>
+                                        <Link to={`/article/${item.id}`}>
+                                            {item.name}
+                                        </Link>
+                                    </div>
+                                    <Divider className="item-divider" />
                                 </div>
                             ))}
                         </div>
@@ -76,7 +80,7 @@ class ArticleList extends Component {
                         )}
                     </div>
                 </Col>
-                <Col {...rightSide} />`
+                <Col {...rightSide} />
             </div>
         );
     }

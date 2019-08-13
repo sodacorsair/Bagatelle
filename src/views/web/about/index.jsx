@@ -1,36 +1,43 @@
-import React, { Component, useEffect, useState } from 'react';
-import './index.less';
-import { connect } from 'react-redux';
-import { Divider, Rate, Icon, Avatar } from 'antd';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Col, Divider } from 'antd';
+import axios from '@/lib/axios';
+import ReactMarkdown from 'react-markdown';
+import CodeBlock from '@/components/markdown/codeblock';
+import { leftSide, rightSide, middle } from '@/lib';
 
-const About = (props) => {
+class About extends Component {
 
-    return (
-        <div className="content-inner-wrapper">
-            <Avatar>
-                SodaCorsair
-            </Avatar>
-            <Divider orientation="left">Brief</Divider>
-            <p>This blog is aimed to record</p>
-            <p>
-                source code address is {' '}
-                <a target="_blank" rel="noreferrer noopener" href="https://google.com">
-                    github
-                </a>
-            </p>
-            <Divider orientation="left">About me</Divider>
-            <ul>
-                <li>Name: </li>
-                <li>Education: </li>
-                <li>
-                    Contact:
-                    <Icon type="qq" /> 123456
-                    <Divider type="vertical" />
-                    <span>1234.com</span>
-                </li>
-            </ul>
-        </div>
-    )
+    state = {
+        content: '',
+    }
+
+    componentDidMount() {
+        axios.get('/article/get/0')
+            .then(res => {
+                this.setState({ content: res.content });
+            });
+    }
+
+    render() {
+        const { content } = this.state;
+
+        return (
+            <div>
+                <Col {...leftSide} />
+                <Col {...middle}>
+                    <div style={{ marginTop: "100px" }}>
+                        <ReactMarkdown
+                            source={content}
+                            escapeHtml={false}
+                            renderers={{ code: CodeBlock }}
+                        />
+                    </div>
+                </Col>
+                <Col {...rightSide} />
+            </div>
+        )
+    }
 }
 
 export default About;

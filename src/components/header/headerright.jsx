@@ -41,12 +41,12 @@ class HeaderRight extends Component {
                             <Button
                                 ghost
                                 style={{ marginRight: 20 }}
-                                onClick={() => this.props.history.push('/admin/login')}
+                                onClick={() => this.props.history.push('/login')}
                             >
                                 登录
                             </Button>
                             <Button
-                                onClick={() => this.props.logout()}
+                                onClick={() => this.props.history.push('/register')}
                             >
                                 注册
                             </Button>

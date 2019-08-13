@@ -78,14 +78,14 @@ function Article(props) {
                                 <span>category </span>
                                 {cates.map((item) => (
                                     <Tag color={'#556B2F'} key={item.Name}>
-                                        <Link to={`/cates/${item.Name}`}>{item.Name}</Link>
+                                        <Link to={`/category/${item.Name}`}>{item.Name}</Link>
                                     </Tag>
                                 ))}
                                 <span>tag </span>
                                 {tags.map((item) => (
                                     <Tag color={'#000080'} key={item.Name}>
                                         <Link 
-                                            to={`/tags/${item.Name}`}
+                                            to={`/tag/${item.Name}`}
                                         >
                                             <span style={{ fontSize: "14px" }}>{item.Name}</span>
                                         </Link>

@@ -17,9 +17,6 @@ class TagList extends Component {
             .then(res => {
                 const { taglist } = res;
                 this.deduplicate(taglist);
-            })
-            .catch(res => {
-
             });
     }
 

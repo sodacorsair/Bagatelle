@@ -7,6 +7,8 @@ import Article from './article';
 import Archives from './archives';
 import ArticleList from './articles';
 import TagList from './taglist';
+import CateList from './catelist';
+import About from './about';
 import PageNotFound from '@/components/NotFound';
 
 export default {
@@ -16,10 +18,12 @@ export default {
     childRoutes: [
         { path: '', component: Home },
         { path: 'article/:id', component: Article },
+        { path: 'about', component: About },
         {
             path: '/',
             component: CatalogueLayout,
             childRoutes: [
+                { path: 'categories', component: CateList },
                 { path: 'archives', component: Archives },
                 { path: 'tags', component: TagList },
                 { path: 'tag/:name', component: ArticleList },
