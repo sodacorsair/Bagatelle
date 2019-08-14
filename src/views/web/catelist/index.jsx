@@ -41,8 +41,8 @@ class CateList extends Component {
             <div>
                 <Col {...leftSide} />
                 <Col {...middle}>
-                    <div className="content-inner-wrapper">
-                        <h1 className="title-name">
+                    <div className="inner-content-wrapper">
+                        <h1 style={{ color: "#0d1a26", fontSize: "2.5em", marginBottom: "30px" }} className="title-name">
                             Category
                         </h1>
 

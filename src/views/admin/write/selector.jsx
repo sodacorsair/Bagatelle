@@ -45,6 +45,10 @@ class TagsSelector extends Component {
         return [...this.state.selectedList];
     }
 
+    setResult = list => {
+        this.setState({selectedlist: list});
+    }
+
     handleInputConfirm = () => {
         let isAlready = false;
         let { curlist, inputValue, selectedList } = this.state;

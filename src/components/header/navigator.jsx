@@ -6,20 +6,6 @@ import { Menu, Icon, Dropdown } from 'antd';
 @withRouter
 class Navigator extends Component {
 
-    renderCatalogueMenu() {
-        return (
-            <Menu>
-                <Menu.Item>
-                    <Link to={'/archives'}>
-                        归档
-                    </Link>
-                    <Link to={'/archives'}>
-                        归档
-                    </Link>
-                </Menu.Item>
-            </Menu>
-        )
-    }
 
     render() {
         const { navList } = this.props;

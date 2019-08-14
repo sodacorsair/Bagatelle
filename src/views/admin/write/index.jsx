@@ -21,7 +21,7 @@ class Write extends React.Component {
     state = {
         title: '',
         content: '',
-        isUpdate: false,
+        isEdit: false,
         isTop: false,
         isPrivate: false,
     }
@@ -56,18 +56,25 @@ class Write extends React.Component {
         this.simpleMDE = new SimpleMDE({
             element: document.getElementById('editor').childElementCount,
             autofocus: true,
-            autosave: true
+            autosave: true,
+            tabSize: 4,
+            placeholder: "Write what you wanna write...",
         });
 
-        if (this.props.history.location.state) {
-            const { articleId } = this.props.history.location.state
-            this.axios.get(`/article/get/${articleId}`).then(res => {
-              const { title, tags, categories, content } = res.data
-              this.smde.value(content)
-              const tagList = tags.map(d => d.name)
-              const categoryList = categories.map(d => d.name)
-              this.setState({ title, tagList, categoryList, isEdit: true, articleId })
-            })
+        var id = -1;
+        id = this.props.match.params.id;
+
+        if (id > 0) {
+            axios.get(`article/get/${id}`)
+                .then(res => {
+                    const { title, tags, cates, content } = res;
+                    this.simpleMDE.value(content);
+                    const tagList = tags.map(d => d.name);
+                    const categoryList = cates.map(d => d.name);
+                    this.setState({ title, tagList, categoryList, isEdit: true, articleId: id });
+                    this.$tagRef.setResult(['dd', 'dd']);
+                    this.$cateRef.setResult(categoryList);
+                });
         }
     }
 
@@ -86,7 +93,6 @@ class Write extends React.Component {
             .then(res => {
                 message.success('文章发表成功');
                 const { articleid } = res;
-                console.log(articleid);
                 this.props.history.push(`/article/${articleid}`)
             })
             .catch(res => {
@@ -95,16 +101,16 @@ class Write extends React.Component {
     }
 
     render() {
-        const leftSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
-        const middle = { xxl: 20, xl: 20, lg: 20, sm: 24, xs: 24 };
-        const rightSide = { xxl: 2, xl: 2, lg: 2, sm: 0, xs: 0 };
-        const { content, title, isUpdate } = this.state;
+        const leftSide = { xxl: 5, xl: 2, lg: 2, sm: 0, xs: 0 };
+        const middle = { xxl: 14, xl: 20, lg: 20, sm: 24, xs: 24 };
+        const rightSide = { xxl: 5, xl: 2, lg: 2, sm: 0, xs: 0 };
+        const { content, title, isEdit } = this.state;
         return (
             <div>
                 <div>
                     <Row>
                         <Col {...leftSide} />
-                        <Col {...middle}>
+                        <Col {...middle} className="edit-wrapper">
                             <div className="blog-edit-title">
                                 <span className="label">标题：</span>
                                 <Input
@@ -122,9 +128,9 @@ class Write extends React.Component {
                             <br />
                             <TagsSelector onRef={el => this.$cateRef = el} type={"cate"} />
                             <br />
-                            <TextArea id="editor" defaultValue={content} />
+                            <TextArea id="editor" defaultValue={content} className="editor-area" />
                             <Button className="submit-button" onClick={this.handleSubmit} type="primary">
-                                {isUpdate ? '更新文章' : '添加文章'}
+                                {isEdit ? '更新文章' : '添加文章'}
                             </Button>
                             <span className="checkbox-lable" style={{ marginLeft: "15px" }}>文章置顶 </span>
                             <Checkbox className="checkbox" onChange={e => this.setState({ isTop: e.target.checked })} style={{ marginLeft: "5px" }} />

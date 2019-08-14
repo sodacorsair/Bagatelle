@@ -42,11 +42,15 @@ class TagList extends Component {
         console.log(taglist);
 
         return (
-            <div className="content-inner-wrapper catalogue">
+            <div className="innter-content-wrapper catalogue">
                  
                 <Col {...leftSide} />
                 <Col {...middle}>
                     <div className="tag-list">
+                        <h1 style={{ color: "#0d1a26", fontSize: "2.5em", marginBottom: "30px" }} className="title-name">
+                            Tag
+                        </h1>
+
                         {taglist.map(item => (
                                 <Badge key={item} className="tag-item">
                                     <Tag>

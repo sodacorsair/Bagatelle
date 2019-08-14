@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Row, Col, Button, Radio } from 'antd';
+import { Layout, Row, Col, Button, Radio, Divider } from 'antd';
 
 import './index.less';
 
@@ -16,17 +16,19 @@ class CatalogueLayout extends Component {
             <Layout className="catalogue-wrapper">
                 <Row>
                     <Col {...leftSide}>
-                        <Radio.Group className="select-wrapper">
-                            <Radio.Button className="select-button" value="tags">
-                                <Link to="/tags">Tags</Link>
-                            </Radio.Button>
-                            <Radio.Button className="select-button" value="archives">
-                                <Link to="/archives">Archives</Link>
-                            </Radio.Button>
-                            <Radio.Button className="select-button" value="categories">
-                                <Link to="/categories">Categories</Link>
-                            </Radio.Button>
-                        </Radio.Group>
+                        <div className="select-wrapper">
+                            <span className="select-button">
+                                <Link to="/tags" style={{ color: "#000" }}>Tags</Link>
+                            </span>
+                            <Divider type="vertical" />
+                            <span className="select-button">
+                                <Link to="/archives" style={{ color: "#000" }}>Archives</Link>
+                            </span>
+                            <Divider type="vertical" />
+                            <span className="select-button">
+                                <Link to="/categories" style={{ color: "#000" }}>Categories</Link>
+                            </span>
+                        </div>
                     </Col>
                     <Col {...rightSide} />
                 </Row>
