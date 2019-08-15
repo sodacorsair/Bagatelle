@@ -1,6 +1,6 @@
 import React, { Compnent, Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Dropdown, Avatar, Menu } from 'antd';
+import { Button, Dropdown, Avatar, Menu, Icon } from 'antd';
 
 import { login, logout } from '@/redux/user/actionCreators';
 
@@ -14,13 +14,24 @@ class HeaderRight extends Component {
         <Menu>
             <Menu.Item>
                 <span>
-                    修改账户信息
+                    Modify Account
                 </span>
             </Menu.Item>
             <Menu.Item onClick={() => this.props.logout()}>
                 <span>
-                    退出
+                    Logout
                 </span>
+            </Menu.Item>
+        </Menu>
+    )
+
+    renderLoginDropMenu = () => (
+        <Menu>
+            <Menu.Item onClick={() => this.props.history.push('/login')}>
+                <span>Login</span>
+            </Menu.Item>
+            <Menu.Item onClick={() => this.props.history.push('/register')}>
+                <span>Register</span>
             </Menu.Item>
         </Menu>
     )
@@ -37,20 +48,9 @@ class HeaderRight extends Component {
                         </Avatar>
                     </Dropdown>
                 ) : (
-                        <Fragment>
-                            <Button
-                                ghost
-                                style={{ marginRight: 20 }}
-                                onClick={() => this.props.history.push('/login')}
-                            >
-                                登录
-                            </Button>
-                            <Button
-                                onClick={() => this.props.history.push('/register')}
-                            >
-                                注册
-                            </Button>
-                        </Fragment>
+                    <Dropdown placement="bottomCenter" overlay={this.renderLoginDropMenu()} trigger={['click']}>
+                        <Icon type="menu-o" style={{ color: "#e7e7e7" }}/>
+                    </Dropdown>
                     )}
             </div>
         )

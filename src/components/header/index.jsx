@@ -36,7 +36,7 @@ const BlogHeader = props => {
                     <HeaderLeft navList={navList} />
                 </Col>
                 <Col {...responsiveRight}>
-                    <Search />
+                    {/* <Search /> */}
                     <HeaderRight history={props.history} />
                     <Navigator navList={navList} />
                 </Col>

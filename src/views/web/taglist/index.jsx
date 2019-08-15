@@ -15,8 +15,8 @@ class TagList extends Component {
     componentWillMount() {
         axios.get('tags/all')
             .then(res => {
-                const { taglist } = res;
-                this.deduplicate(taglist);
+                const { list } = res;
+                this.deduplicate(list);
             });
     }
 

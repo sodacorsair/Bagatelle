@@ -12,7 +12,7 @@ class CateList extends Component {
     componentDidMount() {
         this.axios.get(`/categories/all`)
             .then(res => {
-                this.deduplicate(res.catelist);
+                this.deduplicate(res.list);
             });
     }
 

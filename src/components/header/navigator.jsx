@@ -14,7 +14,8 @@ class Navigator extends Component {
                 <Menu
                     className="header-nav"
                     mode="horizontal"
-                    selectedKeys={[this.props.location.pathname]}>
+                    // selectedKeys={[this.props.location.pathname]}>
+                >
                     {navList.map(item => (
                         <Menu.Item key={item.link}>
                             <Link to={item.link}>

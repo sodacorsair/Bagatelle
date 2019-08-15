@@ -24,6 +24,8 @@ class Write extends React.Component {
         isEdit: false,
         isTop: false,
         isPrivate: false,
+        tagList: [],
+        categoryList: [],
     }
 
     // Editor = () => {
@@ -69,11 +71,9 @@ class Write extends React.Component {
                 .then(res => {
                     const { title, tags, cates, content } = res;
                     this.simpleMDE.value(content);
-                    const tagList = tags.map(d => d.name);
-                    const categoryList = cates.map(d => d.name);
+                    const tagList = tags.map(d => d.Name);
+                    const categoryList = cates.map(d => d.Name);
                     this.setState({ title, tagList, categoryList, isEdit: true, articleId: id });
-                    this.$tagRef.setResult(['dd', 'dd']);
-                    this.$cateRef.setResult(categoryList);
                 });
         }
     }
@@ -89,7 +89,8 @@ class Write extends React.Component {
             message.error('请输入标题！');
             return;
         }
-        axios.post('/article/post', { submitTags, submitCates, submitTitle, submitContent, submitTop, submitPrivate })
+        if (!this.state.isEdit) {
+            axios.post('/article/post', { submitTags, submitCates, submitTitle, submitContent, submitTop, submitPrivate })
             .then(res => {
                 message.success('文章发表成功');
                 const { articleid } = res;
@@ -98,13 +99,18 @@ class Write extends React.Component {
             .catch(res => {
                 message.error('文章发表失败');
             });
+        } else {
+            axios.post()
+        }
     }
 
     render() {
         const leftSide = { xxl: 5, xl: 2, lg: 2, sm: 0, xs: 0 };
         const middle = { xxl: 14, xl: 20, lg: 20, sm: 24, xs: 24 };
         const rightSide = { xxl: 5, xl: 2, lg: 2, sm: 0, xs: 0 };
-        const { content, title, isEdit } = this.state;
+        const { content, title, isEdit, tagList, categoryList } = this.state;
+        console.log(categoryList);
+        console.log(isEdit);
         return (
             <div>
                 <div>
@@ -124,9 +130,9 @@ class Write extends React.Component {
                                 />
                             </div>
                             <br />
-                            <TagsSelector onRef={el => this.$tagRef = el} type={"tag"} />
+                            <TagsSelector onRef={el => this.$tagRef = el} type={"tag"} isEdit={isEdit} initialSeleList={isEdit ? tagList : []} />
                             <br />
-                            <TagsSelector onRef={el => this.$cateRef = el} type={"cate"} />
+                            <TagsSelector onRef={el => this.$cateRef = el} type={"cate"} isEdit={isEdit} initialSeleList={isEdit ? categoryList : []} />
                             <br />
                             <TextArea id="editor" defaultValue={content} className="editor-area" />
                             <Button className="submit-button" onClick={this.handleSubmit} type="primary">

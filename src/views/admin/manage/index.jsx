@@ -32,7 +32,7 @@ class Manage extends Component {
                             <span style={{ fontSize: "16px" }}>
                                 <Link to={`/article/${i.id}`}>{i.name}</Link>
                                 <span style={{ position: "relative", float: "right" }}>delete</span>
-                                <span style={{ position: "relative", float: "right", marginRight: "10px" }}>
+                                <span style={{ position: "relative", float: "right", marginRight: "30px" }}>
                                     <Link to={`/admin/write/${i.id}`}>edit</Link>
                                 </span>
                                 <Divider />

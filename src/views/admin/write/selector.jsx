@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tag, Input, Icon } from 'antd';
 import CheckableTag from 'antd/lib/tag/CheckableTag';
+import axios from '@/lib/axios';
 
 import { changeCateList, changeTagList, changeSeleCateList, changeSeleTagList } from '@/redux/article/actionCreators';
 
@@ -10,6 +11,7 @@ class TagsSelector extends Component {
     constructor(props) {
         super(props);
         let { type } = this.props;
+
         if (type === 'tag') {
             this.state = {
                 curlist: this.props.taglist,
@@ -45,10 +47,6 @@ class TagsSelector extends Component {
         return [...this.state.selectedList];
     }
 
-    setResult = list => {
-        this.setState({selectedlist: list});
-    }
-
     handleInputConfirm = () => {
         let isAlready = false;
         let { curlist, inputValue, selectedList } = this.state;
@@ -71,8 +69,33 @@ class TagsSelector extends Component {
         this.setState({ selectedList: nextSelectedList });
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.onRef && this.props.onRef(this);
+        const fetchStr = this.props.type === 'tag' ? 'tags' : 'categories';
+        axios.get(`/${fetchStr}/all`)
+            .then(res => {
+                const { list } = res;
+                list.sort((a, b) => {
+                    return a.Name > b.Name ? 1 : -1;
+                });
+        
+                let newList = [];
+                let item = '';
+        
+                for (var i = 0; i < list.length; i++) {
+                    if (item !== list[i].Name) {
+                        item = list[i].Name;
+                        newList.push(item);
+                    }
+                }
+                this.setState({ curlist: newList });
+            });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.initialSeleList !== this.props.initialSeleList) {
+            this.setState({ selectedList: nextProps.initialSeleList });
+        }
     }
 
     render() {

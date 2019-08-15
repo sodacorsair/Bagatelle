@@ -8,7 +8,7 @@ const HeaderLeft = ({ navList }) => {
     const navMenu = (
         <Menu>
             <Menu.Item>
-                <SearchButton />
+                {/* <SearchButton /> */}
             </Menu.Item>
             {navList.map(item => (
                 <Menu.Item key={item.link}>
