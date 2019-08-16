@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Col, Pagination, Spin, Divider } from 'antd';
 import BlogPagination from '@/components/web/pagination';
-import { leftSide, middle, rightSide } from '../../../lib';
+import { leftSide, middle, rightSide } from '@/lib';
 
 class ArticleList extends Component {
 
@@ -49,8 +49,8 @@ class ArticleList extends Component {
             <div>
                 <Col {...leftSide} />
                 <Col {...middle}>
-                    <div className="content-inner-wrapper">
-                        <div className="list-wrapper">
+                    <div>
+                        <div>
                             <h1 className="title-name">
                                 {type === 'category' ? 'Category: ' : 'Tag: '}
                                 {name}
@@ -60,6 +60,7 @@ class ArticleList extends Component {
                                 <div>
                                     <div className="article-item" key={item}>
                                         <span>{item.createdAt}</span>
+                                        &nbsp; &nbsp;
                                         <Link to={`/article/${item.id}`}>
                                             {item.name}
                                         </Link>

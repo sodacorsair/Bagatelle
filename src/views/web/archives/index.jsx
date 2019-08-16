@@ -17,10 +17,11 @@ function Archives(props) {
         fetchList(1)
     }, [])
 
-    function fetchList(page = 1) {
-        axios.get('http://127.0.0.1:8088/articles/all')
+    function fetchList(page = 1, pageSize = 10) {
+        axios.get('http://127.0.0.1:8088/articles/all', { params: { page, pageSize } })
             .then(res => {
                 setList(res.articles);
+                setTotal(res.total);
             });
     }
 
@@ -37,6 +38,7 @@ function Archives(props) {
                 {list.map((d, i) => (
                     <div key={i} style={{ fontSize: "16px" }}>
                         <span>{d.createdAt}</span>
+                        &nbsp; &nbsp;
                         <span>
                             <Link to={`/article/${d.id}`}>{d.name}</Link>
                         </span>
@@ -44,14 +46,12 @@ function Archives(props) {
                     </div>
                 ))}
 
-                {list.length < total && (
-                    <BlogPagination
-                        current={parseInt(current) || 1}
-                        onChange={handlePageChange}
-                        total={total}
-                        pageSize={15}
-                    />
-                )}
+                <BlogPagination
+                    current={parseInt(current) || 1}
+                    onChange={handlePageChange}
+                    total={total}
+                    pageSize={10}
+                />
             </Col>
             <Col {...rightSide} />
         </div>

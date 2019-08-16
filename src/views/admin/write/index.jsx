@@ -26,6 +26,7 @@ class Write extends React.Component {
         isPrivate: false,
         tagList: [],
         categoryList: [],
+        articleId: -1,
     }
 
     // Editor = () => {
@@ -91,16 +92,24 @@ class Write extends React.Component {
         }
         if (!this.state.isEdit) {
             axios.post('/article/post', { submitTags, submitCates, submitTitle, submitContent, submitTop, submitPrivate })
-            .then(res => {
-                message.success('文章发表成功');
-                const { articleid } = res;
-                this.props.history.push(`/article/${articleid}`)
-            })
-            .catch(res => {
-                message.error('文章发表失败');
-            });
+                .then(res => {
+                    message.success('文章发表成功');
+                    const { articleid } = res;
+                    this.props.history.push(`/article/${articleid}`)
+                })
+                .catch(res => {
+                    message.error('文章发表失败');
+                });
         } else {
-            axios.post()
+            axios.post('/article/update', { submitTags, submitCates, submitTitle, submitContent, submitTop, submitPrivate, submitId: this.state.articleId })
+                .then(res => { 
+                    message.success('文章更新成功');
+                    const { articleid } = res;
+                    this.props.history.push(`/article/${articleid}`)
+                })
+                .catch(res => {
+                    message.error('文章更新失败');
+                });
         }
     }
 
