@@ -13,7 +13,7 @@ class About extends Component {
     }
 
     componentDidMount() {
-        axios.get('/article/get/0')
+        axios.get('/article/get/1')
             .then(res => {
                 this.setState({ content: res.content });
             });

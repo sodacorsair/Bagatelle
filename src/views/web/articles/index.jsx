@@ -24,7 +24,8 @@ class ArticleList extends Component {
     }
 
     handlePageChange = page => {
-
+        fetchList(page);
+        setCurrent(page);
     }
 
     decodeQuery = props => {

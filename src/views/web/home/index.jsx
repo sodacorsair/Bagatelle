@@ -24,7 +24,7 @@ const Home = (props) => {
                     <Fragment>
                         <Col {...leftSide} />
                         <Col {...middle}>
-                            <h1>欢迎来到Soda Corsair的博客！</h1>
+                            <h1 style={{ fontSize: "40px", textAlign: "center" }}>近期文章</h1>
                         </Col>
                         <Col {...rightSide} />
                     </Fragment>

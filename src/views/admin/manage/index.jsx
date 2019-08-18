@@ -10,17 +10,28 @@ class Manage extends Component {
 
     state = {
         articleList: [],
+        total: 0,
+        current: 1,
     }
 
     componentDidMount() {
-        axios.get('/articles/all')
+        this.fetchList(1, 20);
+    }
+
+    fetchList(page = 1, pageSize = 20) {
+        axios.get('/articles/manage', { params: { page, pageSize } })
             .then(res => {
-                this.setState({ articleList: res.articles });
+                this.setState({ articleList: res.articles, total: res.total });
             });
     }
 
+    handlePageChange(page) {
+        this.fetchList(page);
+        this.setState({ current: page });
+    }
+
     render() {
-        const { articleList } = this.state;
+        const { articleList, total, current } = this.state;
 
         return (
             <Fragment>
@@ -39,6 +50,12 @@ class Manage extends Component {
                             </span>
                         </div>
                     ))}
+                    <BlogPagination
+                        current={parseInt(current) || 1}
+                        onChange={this.handlePageChange}
+                        total={total}
+                        pageSize={20}
+                    />
                 </Col>
                 <Col {...rightSide} />
             </Fragment>
