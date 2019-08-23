@@ -30,6 +30,12 @@ class Manage extends Component {
         this.setState({ current: page });
     }
 
+    handleDelete = id => {
+        axios.get(`/article/delete/${id}`).catch(res => {});
+        const nextList = this.state.articleList.filter(item => item.id !== id);
+        this.setState({articleList: nextList});
+    }
+
     render() {
         const { articleList, total, current } = this.state;
 
@@ -42,9 +48,14 @@ class Manage extends Component {
                         <div key={k}>
                             <span style={{ fontSize: "16px" }}>
                                 <Link to={`/article/${i.id}`}>{i.name}</Link>
-                                <span style={{ position: "relative", float: "right" }}>delete</span>
+                                <span style={{ position: "relative", float: "right", cursor: "pointer" }} onClick={() => this.handleDelete(i.id)}>
+                                    delete
+                                </span>
                                 <span style={{ position: "relative", float: "right", marginRight: "30px" }}>
                                     <Link to={`/admin/write/${i.id}`}>edit</Link>
+                                </span>
+                                <span style={{ position: "relative", float: "right", marginRight: "30px" }}>
+                                    {i.reads} views
                                 </span>
                                 <Divider />
                             </span>

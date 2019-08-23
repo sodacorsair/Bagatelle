@@ -13,7 +13,7 @@ class About extends Component {
     }
 
     componentDidMount() {
-        axios.get('/article/get/1')
+        axios.get('/articles/about')
             .then(res => {
                 this.setState({ content: res.content });
             });
@@ -26,7 +26,8 @@ class About extends Component {
             <div>
                 <Col {...leftSide} />
                 <Col {...middle}>
-                    <div style={{ marginTop: "100px" }}>
+                    <h1 style={{ marginTop: "60px", fontSize: "30px", textAlign: "center" }}>关于我</h1>
+                    <div style={{ marginTop: "20px", fontSize: "16px" }}>
                         <ReactMarkdown
                             source={content}
                             escapeHtml={false}

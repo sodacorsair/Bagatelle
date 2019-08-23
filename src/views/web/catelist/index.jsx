@@ -38,7 +38,7 @@ class CateList extends Component {
         const { cateList } = this.state;
 
         return (
-            <div>
+            <div style={{ paddingBottom: "400px" }}>
                 <Col {...leftSide} />
                 <Col {...middle}>
                     <div className="inner-content-wrapper">

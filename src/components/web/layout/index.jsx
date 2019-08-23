@@ -3,9 +3,9 @@ import './index.less';
 import PropTypes from 'prop-types';
 
 import Header from '../../header';
+import Footer from '../footer';
 import { Layout, Row, Col, BackTop } from 'antd';
-
-const { Content, Footer } = Layout;
+import { leftSide, rightSide, middle } from '@/lib';
 
 class WebLayout extends Component {
 
@@ -16,7 +16,9 @@ class WebLayout extends Component {
                 <Row >
                     <Col className="layout-wrapper">
                         <div className="content-wrapper">
-                            {this.props.children}
+                            <Row className="inner-content-wrapper">{this.props.children}</Row>
+                            <br />
+                            <Footer />
                         </div>
                     </Col>
                 </Row>

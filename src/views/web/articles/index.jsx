@@ -50,7 +50,7 @@ class ArticleList extends Component {
             <div>
                 <Col {...leftSide} />
                 <Col {...middle}>
-                    <div>
+                    <div className="list-wrapper">
                         <div>
                             <h1 className="title-name">
                                 {type === 'category' ? 'Category: ' : 'Tag: '}

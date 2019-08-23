@@ -42,8 +42,7 @@ class TagList extends Component {
         console.log(taglist);
 
         return (
-            <div className="innter-content-wrapper catalogue">
-                 
+            <div className="innter-content-wrapper catalogue" style={{ paddingBottom: "400px" }}>
                 <Col {...leftSide} />
                 <Col {...middle}>
                     <div className="tag-list">
