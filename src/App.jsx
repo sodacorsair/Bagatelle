@@ -10,16 +10,16 @@ const Root = (props) => {
 
         const renderRoute = (item, routeContextPath) => {
 
-            if (item.protected && !props.isLogin) {
+            let newContextPath = item.path ? `${routeContextPath}/${item.path}` : routeContextPath
+            newContextPath = newContextPath.replace(/\/+/g, '/')
+
+            if ((item.protected || newContextPath.includes('admin')) && props.permission !== 0) {
                 item = {
                     ...item,
-                    component: () => <Redirect to="/admin/login" />,
+                    component: () => <Redirect to="/" />,
                     children: [],
                 }
             }
-
-            let newContextPath = item.path ? `${routeContextPath}/${item.path}` : routeContextPath
-            newContextPath = newContextPath.replace(/\/+/g, '/')
 
             // let newContextPath;
             // if (/^\//.test(item.path)) {

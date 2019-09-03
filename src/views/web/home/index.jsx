@@ -28,8 +28,8 @@ const Home = (props) => {
                         <Col {...middle}>
                             <div className="home-wrapper" style={{ marginTop: "40px" }}>
                                 {list.map((d, i) => (
-                                    <Link to={`/article/${d.id}`}>
-                                        <div key={i} style={{ marginBottom: "40px" }} >
+                                    <Link key={i} to={`/article/${d.id}`}>
+                                        <div style={{ marginBottom: "40px" }} >
                                             <Divider />
                                                 <h1 style={{ textAlign: "center" }}>
                                                     {d.name}

@@ -18,7 +18,7 @@ function Archives(props) {
     }, [])
 
     function fetchList(page = 1, pageSize = 10) {
-        axios.get('http://127.0.0.1:8088/articles/all', { params: { page, pageSize } })
+        axios.get('/articles/all', { params: { page, pageSize } })
             .then(res => {
                 setList(res.articles);
                 setTotal(res.total);

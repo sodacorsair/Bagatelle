@@ -25,9 +25,11 @@ class Login extends Component {
     handleSubmit = async () => {
         await this.props.login(this.state);
         if (this.props.permission === 0) {
+            console.log("props.perm=" + this.props.permission);
             this.props.history.push('/admin');
             message.success('登录成功');
         } else {
+            console.log("props.perm=" + this.props.permission);
             this.props.history.push('/');
             message.success('登录成功')
         }

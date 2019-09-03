@@ -1,5 +1,6 @@
 import React, { Compnent, Fragment, Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Button, Dropdown, Avatar, Menu, Icon } from 'antd';
 
 import { login, logout } from '@/redux/user/actionCreators';
@@ -27,11 +28,11 @@ class HeaderRight extends Component {
 
     renderLoginDropMenu = () => (
         <Menu>
-            <Menu.Item onClick={() => this.props.history.push('/login')}>
-                <span>Login</span>
+            <Menu.Item>
+                <Link to='/login'><span>Login</span></Link>
             </Menu.Item>
-            <Menu.Item onClick={() => this.props.history.push('/register')}>
-                <span>Register</span>
+            <Menu.Item>
+                <Link to='/register'><span>Register</span></Link>
             </Menu.Item>
         </Menu>
     )
